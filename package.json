@@ -3,7 +3,13 @@
   "version": "0.1.0",
   "description": "",
   "keywords": [
-    "chrome"
+    "chrome",
+    "chromium",
+    "headless",
+    "find-chrome",
+    "puppeteer-core",
+    "browser-fetcher",
+    "puppeteer"
   ],
   "license": "MIT",
   "author": "mbalabash <maksim.balabash@gmail.com>",
@@ -21,6 +27,9 @@
     "publish": "clean-publish",
     "unit": "tsm node_modules/uvu/bin.js . '\\.test\\.(ts|js)$'",
     "test": "yarn unit && eslint . && check-dts && size-limit"
+  },
+  "peerDependencies": {
+    "puppeteer-core": ">7.x"
   },
   "devDependencies": {
     "@logux/eslint-config": "^46.1.0",
