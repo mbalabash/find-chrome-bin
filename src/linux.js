@@ -2,9 +2,9 @@ import { join } from 'path'
 import { execSync, execFileSync } from 'child_process'
 import { homedir } from 'os'
 
-import { newLineRegex, canAccess } from './utils'
+import { newLineRegex, canAccess } from './utils.js'
 
-export function linux() {
+export function findChromeBinaryOnLinux() {
   let installations = []
 
   // Look into the directories where .desktop are saved on gnome based distro's

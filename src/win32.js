@@ -1,9 +1,9 @@
 import { sep, join } from 'path'
 import { execSync } from 'child_process'
 
-import { canAccess } from './utils'
+import { canAccess } from './utils.js'
 
-export function win32(canary) {
+export function findChromeBinaryOnWin32(canary) {
   let suffix = canary
     ? `${sep}Google${sep}Chrome SxS${sep}Application${sep}chrome.exe`
     : `${sep}Google${sep}Chrome${sep}Application${sep}chrome.exe`
@@ -60,6 +60,6 @@ export function getWin32ChromeVersionInfo(executablePath) {
 
     return `${manufacturer} ${version}`
   } else {
-    throw new Error(`No version information found in '${executablePath}'`)
+    throw new Error(`No version information found for '${executablePath}'`)
   }
 }

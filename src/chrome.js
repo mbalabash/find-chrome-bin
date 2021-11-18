@@ -1,10 +1,8 @@
 import { join } from 'path'
-import puppeteer from 'puppeteer-core'
 import { execSync } from 'child_process'
-import { PUPPETEER_REVISIONS } from 'puppeteer-core/lib/cjs/puppeteer/revisions'
 
-import { MIN_CHROME_VERSION, MAX_CHROME_VERSION } from './utils'
-import { getWin32ChromeVersionInfo } from './win32'
+import { MIN_CHROME_VERSION, MAX_CHROME_VERSION } from './utils.js'
+import { getWin32ChromeVersionInfo } from './win32.js'
 
 export function isSuitableVersion(
   executablePath,
@@ -36,37 +34,33 @@ export function isSuitableVersion(
 }
 
 export async function downloadChromium(chromeDestinationPath) {
-  let downloadHost =
-    process.env.PUPPETEER_DOWNLOAD_HOST ||
-    process.env.npm_config_puppeteer_download_host ||
-    process.env.npm_package_config_puppeteer_download_host
-  let chromeTempPath = chromeDestinationPath || join(__dirname, 'temp', 'chrome')
-
-  let browserFetcher = puppeteer.createBrowserFetcher({
-    path: chromeTempPath,
-    host: downloadHost
-  })
-
-  let revision =
-    process.env.PUPPETEER_CHROMIUM_REVISION ||
-    process.env.npm_config_puppeteer_chromium_revision ||
-    process.env.npm_package_config_puppeteer_chromium_revision ||
-    PUPPETEER_REVISIONS.chromium
-
-  let revisionInfo = browserFetcher.revisionInfo(revision)
-
-  // If already downloaded
-  if (revisionInfo.local) return revisionInfo
-
   try {
-    /* eslint-disable no-console */
-    console.info(`Downloading Chromium r${revision}...`)
+    let { default: puppeteer } = await import('puppeteer-core')
+    let { PUPPETEER_REVISIONS } = await import('puppeteer-core/lib/cjs/puppeteer/revisions')
+
+    let downloadHost =
+      process.env.PUPPETEER_DOWNLOAD_HOST ||
+      process.env.npm_config_puppeteer_download_host ||
+      process.env.npm_package_config_puppeteer_download_host
+    let chromeTempPath = chromeDestinationPath || join(__dirname, 'temp', 'chrome')
+
+    let browserFetcher = puppeteer.createBrowserFetcher({
+      path: chromeTempPath,
+      host: downloadHost
+    })
+
+    let revision =
+      process.env.PUPPETEER_CHROMIUM_REVISION ||
+      process.env.npm_config_puppeteer_chromium_revision ||
+      process.env.npm_package_config_puppeteer_chromium_revision ||
+      PUPPETEER_REVISIONS.chromium
+
+    let revisionInfo = browserFetcher.revisionInfo(revision)
+
+    // If already downloaded
+    if (revisionInfo.local) return revisionInfo
 
     let newRevisionInfo = await browserFetcher.download(revisionInfo.revision)
-
-    console.info(`Chromium downloaded to ${newRevisionInfo.folderPath}`)
-    console.info(`Downloaded Chrome executable path: ${revisionInfo.executablePath}`)
-    console.info(`Downloaded Chrome version: ${chromeVersion(revisionInfo.executablePath)}`)
 
     let localRevisions = await browserFetcher.localRevisions()
     localRevisions = localRevisions.filter(r => r !== revisionInfo.revision)
@@ -77,14 +71,12 @@ export async function downloadChromium(chromeDestinationPath) {
 
     return newRevisionInfo
   } catch (error) {
-    console.error(`ERROR: Failed to download Chromium r${revision}!`)
-    console.error(error)
-    return null
-    /* eslint-enable no-console */
+    console.error(`ERROR: Failed to download Chromium!`) // eslint-disable-line no-console
+    throw error
   }
 }
 
-function chromeVersion(executablePath) {
+export function chromeVersion(executablePath) {
   if (process.platform === 'win32') {
     return getWin32ChromeVersionInfo(executablePath)
   } else {

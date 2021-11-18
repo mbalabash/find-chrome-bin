@@ -1,9 +1,9 @@
 import { join } from 'path'
 import { execSync } from 'child_process'
 
-import { newLineRegex, canAccess } from './utils'
+import { newLineRegex, canAccess } from './utils.js'
 
-export function darwin(canary) {
+export function findChromeBinaryOnDarwin(canary) {
   let LSREGISTER =
     '/System/Library/Frameworks/CoreServices.framework' +
     '/Versions/A/Frameworks/LaunchServices.framework' +
