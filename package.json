@@ -1,0 +1,69 @@
+{
+  "name": "find-chrome-bin",
+  "version": "0.1.0",
+  "description": "",
+  "keywords": [
+    "chrome"
+  ],
+  "license": "MIT",
+  "author": "mbalabash <maksim.balabash@gmail.com>",
+  "sideEffects": false,
+  "engines": {
+    "node": "^12.0.0 || ^14.0.0 || >=16.0.0"
+  },
+  "type": "module",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": "./index.js",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "publish": "clean-publish",
+    "unit": "tsm node_modules/uvu/bin.js . '\\.test\\.(ts|js)$'",
+    "test": "yarn unit && eslint . && check-dts && size-limit"
+  },
+  "devDependencies": {
+    "@logux/eslint-config": "^46.1.0",
+    "@size-limit/preset-small-lib": "^7.0.0",
+    "check-dts": "^0.6.4",
+    "clean-publish": "^3.4.3",
+    "eslint": "^8.2.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prefer-let": "^3.0.1",
+    "eslint-plugin-promise": "^5.1.1",
+    "size-limit": "^7.0.0",
+    "tsm": "^2.1.4",
+    "typescript": "^4.5.2",
+    "uvu": "^0.5.2"
+  },
+  "eslintConfig": {
+    "extends": "@logux/eslint-config"
+  },
+  "eslintIgnore": [],
+  "size-limit": [
+    {
+      "import": "{ delay }",
+      "limit": "37 B"
+    }
+  ],
+  "prettier": {
+    "arrowParens": "avoid",
+    "quoteProps": "as-needed",
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "none"
+  },
+  "clean-publish": {
+    "cleanDocs": false
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mbalabash/find-chrome-bin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mbalabash/find-chrome-bin/issues"
+  },
+  "homepage": "https://github.com/mbalabash/find-chrome-bin#readme"
+}
