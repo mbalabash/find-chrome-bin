@@ -36,7 +36,6 @@ export function isSuitableVersion(
 }
 
 export async function downloadChromium(chromeDestinationPath) {
-  /* eslint-disable no-console */
   let downloadHost =
     process.env.PUPPETEER_DOWNLOAD_HOST ||
     process.env.npm_config_puppeteer_download_host ||
@@ -60,6 +59,7 @@ export async function downloadChromium(chromeDestinationPath) {
   if (revisionInfo.local) return revisionInfo
 
   try {
+    /* eslint-disable no-console */
     console.info(`Downloading Chromium r${revision}...`)
 
     let newRevisionInfo = await browserFetcher.download(revisionInfo.revision)
@@ -80,8 +80,8 @@ export async function downloadChromium(chromeDestinationPath) {
     console.error(`ERROR: Failed to download Chromium r${revision}!`)
     console.error(error)
     return null
+    /* eslint-enable no-console */
   }
-  /* eslint-enable no-console */
 }
 
 function chromeVersion(executablePath) {
