@@ -18,7 +18,7 @@
   },
   "types": "./index.d.ts",
   "scripts": {
-    "publish": "clean-publish",
+    "publish": "clean-publish && npx dual-publish",
     "unit": "tsm node_modules/uvu/bin.js . '\\.test\\.(ts|js)$'",
     "test": "yarn unit && eslint . && check-dts && size-limit"
   },
