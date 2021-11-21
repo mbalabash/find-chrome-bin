@@ -1,14 +1,19 @@
-import { isSuitableVersion, chromeVersion, downloadChromium } from './src/chrome.js'
-import { findChromeBinaryOnDarwin } from './src/darwin.js'
-import { findChromeBinaryOnLinux } from './src/linux.js'
-import { findChromeBinaryOnWin32 } from './src/win32.js'
+const { isSuitableVersion, chromeVersion, downloadChromium } = require('./src/chrome')
+const { findChromeBinaryOnDarwin } = require('./src/darwin')
+const { findChromeBinaryOnLinux } = require('./src/linux')
+const { findChromeBinaryOnWin32 } = require('./src/win32')
 
-export async function findChrome({ min, max, downloadPath }) {
+async function findChrome({ min, max, download: { puppeteer, path, revision } }) {
   try {
     let executablePath = findChromeBinaryPath()
     let isSuitable = isSuitableVersion(executablePath, min, max)
     let isNotEmpty = typeof executablePath === 'string' && executablePath.length > 0
-    let isDownloadSkipped = typeof downloadPath !== 'string' || downloadPath.length === 0
+    let isDownloadSkipped =
+      !!puppeteer === false ||
+      typeof path !== 'string' ||
+      path.length === 0 ||
+      typeof revision !== 'string' ||
+      revision.length === 0
 
     if (isNotEmpty && isSuitable) {
       return { executablePath, browser: chromeVersion(executablePath) }
@@ -19,10 +24,10 @@ export async function findChrome({ min, max, downloadPath }) {
         "Couldn't find suitable Chrome version locally.\nSkipping Chromium downloading due to unset downloadPath."
       )
     } else {
-      let revisionInfo = await downloadChromium()
+      let revisionInfo = await downloadChromium(puppeteer, path, revision)
       return {
         executablePath: revisionInfo.executablePath,
-        browser: `${revisionInfo.product} ${chromeVersion(revisionInfo.executablePath)}`
+        browser: chromeVersion(revisionInfo.executablePath)
       }
     }
   } catch (error) {
@@ -49,4 +54,4 @@ function findChromeBinaryPath() {
   return process.env.CHROMIUM_EXECUTABLE_PATH || process.env.PUPPETEER_EXECUTABLE_PATH || getter()
 }
 
-export default findChrome
+module.exports = { findChrome }

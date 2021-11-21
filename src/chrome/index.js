@@ -1,14 +1,9 @@
-import { join } from 'path'
-import { execSync } from 'child_process'
+const { execSync } = require('child_process')
 
-import { MIN_CHROME_VERSION, MAX_CHROME_VERSION } from './utils.js'
-import { getWin32ChromeVersionInfo } from './win32.js'
+const { MIN_CHROME_VERSION, MAX_CHROME_VERSION } = require('../utils')
+const { getWin32ChromeVersionInfo } = require('../win32')
 
-export function isSuitableVersion(
-  executablePath,
-  min = MIN_CHROME_VERSION,
-  max = MAX_CHROME_VERSION
-) {
+function isSuitableVersion(executablePath, min = MIN_CHROME_VERSION, max = MAX_CHROME_VERSION) {
   if (min > max) {
     throw new Error(
       "ERROR: Passed options for limiting chrome versions are incorrect. Min couldn't be bigger then Max."
@@ -33,27 +28,25 @@ export function isSuitableVersion(
   return false
 }
 
-export async function downloadChromium(chromeDestinationPath) {
-  try {
-    let { default: puppeteer } = await import('puppeteer-core')
-    let { PUPPETEER_REVISIONS } = await import('puppeteer-core/lib/cjs/puppeteer/revisions')
+function chromeVersion(executablePath) {
+  return (
+    process.platform === 'win32'
+      ? getWin32ChromeVersionInfo(executablePath)
+      : execSync(`"${executablePath}" --version`).toString()
+  ).trim()
+}
 
+async function downloadChromium(puppeteer, path, revision) {
+  try {
     let downloadHost =
       process.env.PUPPETEER_DOWNLOAD_HOST ||
       process.env.npm_config_puppeteer_download_host ||
       process.env.npm_package_config_puppeteer_download_host
-    let chromeTempPath = chromeDestinationPath || join(__dirname, 'temp', 'chrome')
 
     let browserFetcher = puppeteer.createBrowserFetcher({
-      path: chromeTempPath,
+      path,
       host: downloadHost
     })
-
-    let revision =
-      process.env.PUPPETEER_CHROMIUM_REVISION ||
-      process.env.npm_config_puppeteer_chromium_revision ||
-      process.env.npm_package_config_puppeteer_chromium_revision ||
-      PUPPETEER_REVISIONS.chromium
 
     let revisionInfo = browserFetcher.revisionInfo(revision)
 
@@ -76,10 +69,4 @@ export async function downloadChromium(chromeDestinationPath) {
   }
 }
 
-export function chromeVersion(executablePath) {
-  if (process.platform === 'win32') {
-    return getWin32ChromeVersionInfo(executablePath)
-  } else {
-    return execSync(`"${executablePath}" --version`).toString()
-  }
-}
+module.exports = { isSuitableVersion, chromeVersion, downloadChromium }

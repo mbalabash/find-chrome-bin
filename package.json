@@ -13,16 +13,10 @@
   ],
   "license": "MIT",
   "author": "mbalabash <maksim.balabash@gmail.com>",
-  "sideEffects": false,
   "engines": {
     "node": "^12.0.0 || ^14.0.0 || >=16.0.0"
   },
-  "type": "module",
   "types": "./index.d.ts",
-  "exports": {
-    ".": "./index.js",
-    "./package.json": "./package.json"
-  },
   "scripts": {
     "publish": "clean-publish",
     "unit": "tsm node_modules/uvu/bin.js . '\\.test\\.(ts|js)$'",
