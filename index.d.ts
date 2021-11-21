@@ -17,37 +17,57 @@ export type FindChromeOptions = {
    * Settings for Chromium downloading
    * @default undefined
    * @type {({
+   *     puppeteer: Object
    *     path: string
-   *     revision: string | undefined
+   *     revision: string
    *   })}
+   * @example
+   * const puppeteer = require('puppeteer-core')
+   * const { PUPPETEER_REVISIONS } = require('puppeteer-core/lib/cjs/puppeteer/revisions')
+   * download: {
+   *   puppeteer,
+   *   path: path.join('.', 'chrome'),
+   *   revision: PUPPETEER_REVISIONS.chromium,
+   * }
    */
   download?: {
     /**
+     * Puppeteer's instance
+     * @type {Object}
+     * @example const puppeteer = require('puppeteer-core');
+     */
+    puppeteer: Object
+
+    /**
      * Path where to put downloaded Chromium
      * @type {string}
+     * @example path.join('.', 'chrome')
      */
     path: string
 
     /**
      * Specific Chromium revision to download
-     * @type {string | undefined}
+     * @type {string}
+     * @example
+     * const { PUPPETEER_REVISIONS } = require('puppeteer-core/lib/cjs/puppeteer/revisions')
+     * PUPPETEER_REVISIONS.chromium //=> "938553"
      */
-    revision?: string
+    revision: string
   }
 }
 
 export type FindChromeOutput = {
   /**
    * Path to Chromium executable binary which you can use to run puppeteer
-   * @example '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
    * @type {string}
+   * @example "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
    */
   executablePath: string
 
   /**
    * Browser name and version
-   * @example 'Google Chrome 96.0.4664.45'
    * @type {string}
+   * @example "Google Chrome 96.0.4664.45"
    */
   browser: string
 }
@@ -70,15 +90,16 @@ export type FindChromeOutput = {
  *
  * @example
  * ```js
- * import { dirname, join } from 'path'
- * import { fileURLToPath } from 'url'
  * import findChrome from 'find-chrome-bin'
+ * import puppeteer from 'puppeteer-core'
+ * import { PUPPETEER_REVISIONS } from 'puppeteer-core/lib/cjs/puppeteer/revisions'
  * const chromeInfo = findChrome({
  *     min: 95,
  *     max: 98,
  *     download: {
- *       path: join(dirname(fileURLToPath(import.meta.url)), 'chrome'),
- *       revision: '938553'
+ *       puppeteer,
+ *       path: path.join('.', 'chrome'),
+ *       revision: PUPPETEER_REVISIONS.chromium,
  *     }
  * })
  * ```
@@ -87,5 +108,3 @@ export type FindChromeOutput = {
  * @returns {Promise<FindChromeOutput>}
  */
 export declare function findChrome(options: FindChromeOptions): Promise<FindChromeOutput>
-
-export default findChrome
