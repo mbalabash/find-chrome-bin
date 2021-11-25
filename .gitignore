@@ -21,5 +21,3 @@ yarn-debug.log*
 yarn-error.log*
 
 coverage/
-
-test/playground.js

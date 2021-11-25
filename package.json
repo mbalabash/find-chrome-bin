@@ -19,8 +19,7 @@
   "types": "./index.d.ts",
   "scripts": {
     "publish": "clean-publish && npx dual-publish",
-    "unit": "tsm node_modules/uvu/bin.js . '\\.test\\.(ts|js)$'",
-    "test": "yarn unit && eslint . && check-dts && size-limit"
+    "test": "eslint . && check-dts && size-limit"
   },
   "peerDependencies": {
     "puppeteer-core": ">7.x"
@@ -38,9 +37,7 @@
     "eslint-plugin-prefer-let": "^3.0.1",
     "eslint-plugin-promise": "^5.1.1",
     "size-limit": "^7.0.3",
-    "tsm": "^2.1.4",
-    "typescript": "^4.5.2",
-    "uvu": "^0.5.2"
+    "typescript": "^4.5.2"
   },
   "eslintConfig": {
     "extends": "@logux/eslint-config"
@@ -49,7 +46,14 @@
   "size-limit": [
     {
       "import": "{ delay }",
-      "limit": "37 B"
+      "path": "index.js",
+      "limit": "4 kB",
+      "ignore": [
+        "path",
+        "fs",
+        "child_process",
+        "os"
+      ]
     }
   ],
   "prettier": {
