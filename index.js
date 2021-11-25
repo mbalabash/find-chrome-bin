@@ -21,7 +21,7 @@ async function findChrome({ min, max, download: { puppeteer, path, revision } = 
 
     if ((!isNotEmpty || (isNotEmpty && !isSuitable)) && isDownloadSkipped) {
       throw new Error(
-        "Couldn't find suitable Chrome version locally.\nSkipping Chromium downloading due to unset downloadPath."
+        "Couldn't find suitable Chrome version locally.\nSkipping Chromium downloading due to unset or incorrect download settings."
       )
     } else {
       let revisionInfo = await downloadChromium(puppeteer, path, revision)
