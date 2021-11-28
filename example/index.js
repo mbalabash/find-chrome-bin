@@ -1,29 +1,26 @@
 /* eslint-disable node/no-missing-require, node/no-unpublished-require, no-console */
-const { join } = require('path')
-const puppeteer = require('puppeteer-core')
-const { PUPPETEER_REVISIONS } = require('puppeteer-core/lib/cjs/puppeteer/revisions')
+import { join } from 'path'
+import puppeteer from 'puppeteer-core'
+import { PUPPETEER_REVISIONS } from 'puppeteer-core/lib/cjs/puppeteer/revisions.js'
+import { findChrome } from 'find-chrome-bin'
 
-const { findChrome } = require('../index')
+let chromeInfo = await findChrome({
+  min: 92,
+  max: 95,
+  download: {
+    puppeteer,
+    path: join('.', 'chrome'),
+    revision: PUPPETEER_REVISIONS.chromium
+  }
+})
 
-;
-
-(async () => {
-  let chromeInfo = await findChrome({
-    min: 95,
-    max: 98,
-    download: {
-      puppeteer,
-      path: join('.', 'chrome'),
-      revision: PUPPETEER_REVISIONS.chromium
-    }
-  })
-
-  console.log('chromeInfo:', chromeInfo)
-})()
+console.log(chromeInfo)
 
 // package.json
 // {
+//   "type": "module",
 //   "dependencies": {
-//     "puppeteer-core": ">7.x"
+//     "puppeteer-core": ">7.x",
+//     "find-chrome-bin": "git+https://github.com/mbalabash/find-chrome-bin.git"
 //   }
 // }
