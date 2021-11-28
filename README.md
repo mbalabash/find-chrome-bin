@@ -22,18 +22,19 @@ console.log(chromeInfo)
 
 ```js
 import { join } from 'path'
-import findChrome from 'find-chrome-bin'
 import puppeteer from 'puppeteer-core'
-import { PUPPETEER_REVISIONS } from 'puppeteer-core/lib/cjs/puppeteer/revisions'
-const chromeInfo = await findChrome({
+import { PUPPETEER_REVISIONS } from 'puppeteer-core/lib/cjs/puppeteer/revisions.js'
+import { findChrome } from 'find-chrome-bin'
+
+let chromeInfo = await findChrome({
   min: 92,
-  max: 95
+  max: 95,
   download: {
     puppeteer,
     path: join('.', 'chrome'),
     revision: PUPPETEER_REVISIONS.chromium
   }
 })
-console.log(chromeInfo) 
+console.log(chromeInfo)
 // { browser: "Chromium 94.0.4606.0", executablePath: "/Users/mbalabash/Projects/opensource/find-chrome-bin/example/chrome/mac-911515/chrome-mac/Chromium.app/Contents/MacOS/Chromium" }
 ```
