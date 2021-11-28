@@ -42,7 +42,9 @@
   "eslintConfig": {
     "extends": "@logux/eslint-config"
   },
-  "eslintIgnore": [],
+  "eslintIgnore": [
+    "example/index.js"
+  ],
   "size-limit": [
     {
       "import": "{ delay }",

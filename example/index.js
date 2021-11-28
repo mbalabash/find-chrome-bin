@@ -1,4 +1,3 @@
-/* eslint-disable node/no-missing-require, node/no-unpublished-require, no-console */
 import { join } from 'path'
 import puppeteer from 'puppeteer-core'
 import { PUPPETEER_REVISIONS } from 'puppeteer-core/lib/cjs/puppeteer/revisions.js'
@@ -21,6 +20,5 @@ console.log(chromeInfo)
 //   "type": "module",
 //   "dependencies": {
 //     "puppeteer-core": ">7.x",
-//     "find-chrome-bin": "git+https://github.com/mbalabash/find-chrome-bin.git"
 //   }
 // }
