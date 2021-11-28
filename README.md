@@ -2,7 +2,7 @@
 
 By default, it only tries to find Chromium v85+. You can configure a suitable version using `min` and `max` options.
 
-It can also download Chromium if couldn't find any suitable version locally (you mast have puppeteer-core dependency in your package.json).
+It can also download Chromium if couldn't find any suitable version locally (you have to provide puppeteer-core entity to `download` option).
 
 Respects `CHROMIUM_EXECUTABLE_PATH` and `PUPPETEER_EXECUTABLE_PATH` environment variables for CI purposes.
 
