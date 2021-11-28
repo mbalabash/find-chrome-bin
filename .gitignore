@@ -21,3 +21,6 @@ yarn-debug.log*
 yarn-error.log*
 
 coverage/
+
+example/
+!example/index.js
