@@ -82,7 +82,7 @@ export type FindChromeOutput = {
  *
  * @example
  * ```js
- * import findChrome from 'find-chrome-bin'
+ * import { findChrome } from 'find-chrome-bin'
  * const chromeInfo = await findChrome()
  * chromeInfo.browser //=> "Google Chrome 96.0.4664.45"
  * chromeInfo.executablePath //=> "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
@@ -91,7 +91,7 @@ export type FindChromeOutput = {
  * @example
  * ```js
  * import { join } from 'path
- * import findChrome from 'find-chrome-bin'
+ * import { findChrome } from 'find-chrome-bin'
  * import puppeteer from 'puppeteer-core'
  * import { PUPPETEER_REVISIONS } from 'puppeteer-core/lib/cjs/puppeteer/revisions'
  * const chromeInfo = await findChrome({
