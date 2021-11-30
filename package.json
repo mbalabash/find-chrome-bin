@@ -35,6 +35,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prefer-let": "^3.0.1",
     "eslint-plugin-promise": "^5.1.1",
+    "nanospy": "^0.4.0",
     "size-limit": "^7.0.3",
     "tsm": "^2.1.4",
     "typescript": "^4.5.2",
