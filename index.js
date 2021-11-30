@@ -3,7 +3,7 @@ const { findChromeBinaryOnDarwin } = require('./src/darwin')
 const { findChromeBinaryOnLinux } = require('./src/linux')
 const { findChromeBinaryOnWin32 } = require('./src/win32')
 
-async function findChrome({ min, max, download: { puppeteer, path, revision } = {} }) {
+async function findChrome({ min, max, download: { puppeteer, path, revision } = {} } = {}) {
   try {
     let executablePath = findChromeBinaryPath()
     let isSuitable = isSuitableVersion(executablePath, min, max)
