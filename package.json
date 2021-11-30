@@ -20,7 +20,7 @@
   "scripts": {
     "before-publish": "yarn test && clean-publish && npx dual-publish --check && npm pack",
     "publish": "clean-publish && npx dual-publish",
-    "unit": "tsm node_modules/uvu/bin.js . '\\.test\\.(ts|js)$'",
+    "unit": "tsm node_modules/uvu/bin.js test/",
     "test": "yarn unit && eslint . && check-dts && size-limit"
   },
   "devDependencies": {
