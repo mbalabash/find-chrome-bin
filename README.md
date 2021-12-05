@@ -1,4 +1,4 @@
-## Finds local suitable Chromium
+# Finds local suitable Chromium
 
 By default, it only tries to find Chromium v85+. You can configure a suitable version using `min` and `max` options.
 
@@ -6,19 +6,25 @@ It can also download Chromium if couldn't find any suitable version locally (you
 
 Respects `CHROMIUM_EXECUTABLE_PATH` and `PUPPETEER_EXECUTABLE_PATH` environment variables for CI purposes.
 
+## Usage
+
 ```js
-import findChrome from 'find-chrome-bin'
+import { findChrome } from 'find-chrome-bin'
 const chromeInfo = await findChrome()
 console.log(chromeInfo)
 // { browser: "Google Chrome 96.0.4664.45", executablePath: "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" }
 ```
 
+### Specifying `min` and/or `max` Chromium versions
+
 ```js
-import findChrome from 'find-chrome-bin'
-const chromeInfo = await findChrome({ min: 92, max: 95 })
+import { findChrome } from 'find-chrome-bin'
+const chromeInfo = await findChrome({ min: 95, max: 97 })
 console.log(chromeInfo)
-// { browser: "", executablePath: "" }
+// { browser: "Google Chrome 96.0.4664.45", executablePath: "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" }
 ```
+
+### With fallback to download suitable Chromium revision
 
 ```js
 import { join } from 'path'
@@ -27,7 +33,6 @@ import { PUPPETEER_REVISIONS } from 'puppeteer-core/lib/cjs/puppeteer/revisions.
 import { findChrome } from 'find-chrome-bin'
 
 let chromeInfo = await findChrome({
-  min: 92,
   max: 95,
   download: {
     puppeteer,
