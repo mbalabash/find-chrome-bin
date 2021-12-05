@@ -6,15 +6,11 @@
 
 * **Zero-dependency.** 
 
+## Usage
+
 By default, it tries to find Chromium v85+ binary with you can then use for launching puppeteer-core for your needs. 
 
-You can configure a suitable version using `min` and `max` options.
-
-It can also download suitable Chromium revision as fallback (you have to provide puppeteer-core entity and Chromium revision to `download` option).
-
 Respects `CHROMIUM_EXECUTABLE_PATH` and `PUPPETEER_EXECUTABLE_PATH` environment variables for CI purposes.
-
-## Usage
 
 ```js
 import { findChrome } from 'find-chrome-bin'
@@ -25,6 +21,8 @@ console.log(chromeInfo)
 
 ### Specifying `min` and/or `max` Chromium versions
 
+You can configure a suitable version using `min` and `max` options.
+
 ```js
 import { findChrome } from 'find-chrome-bin'
 const chromeInfo = await findChrome({ min: 95, max: 97 })
@@ -33,6 +31,8 @@ console.log(chromeInfo)
 ```
 
 ### With fallback to download suitable Chromium revision
+
+It can also download suitable Chromium revision as fallback (you have to provide puppeteer-core entity and Chromium revision to `download` option).
 
 ```js
 import { join } from 'path'
