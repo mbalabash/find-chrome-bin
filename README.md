@@ -6,7 +6,9 @@
 
 * **Zero-dependency.** 
 
-By default, it tries to find Chromium v85+. You can configure a suitable version using `min` and `max` options.
+By default, it tries to find Chromium v85+ binary with you can then use for launching puppeteer-core for your needs. 
+
+You can configure a suitable version using `min` and `max` options.
 
 It can also download suitable Chromium revision as fallback (you have to provide puppeteer-core entity and Chromium revision to `download` option).
 
