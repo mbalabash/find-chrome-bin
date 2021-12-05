@@ -1,8 +1,14 @@
 # Finds local suitable Chromium
 
-By default, it only tries to find Chromium v85+. You can configure a suitable version using `min` and `max` options.
+* **Cross-platform.** Works on win, mac and linux.
 
-It can also download Chromium if couldn't find any suitable version locally (you have to provide puppeteer-core entity to `download` option).
+* **Small.** Only 2.4 kB in your node_modules.
+
+* **Zero-dependency.** 
+
+By default, it tries to find Chromium v85+. You can configure a suitable version using `min` and `max` options.
+
+It can also download suitable Chromium revision as fallback (you have to provide puppeteer-core entity and Chromium revision to `download` option).
 
 Respects `CHROMIUM_EXECUTABLE_PATH` and `PUPPETEER_EXECUTABLE_PATH` environment variables for CI purposes.
 
