@@ -1,14 +1,14 @@
 # Finds local suitable Chromium
 
-* **Cross-platform.** Works on win, mac and linux.
+- **Cross-platform.** Works on win, mac and linux.
 
-* **Small.** Only 2.4 kB in your node_modules.
+- **Small.** Only 2.4 kB in your node_modules.
 
-* **Zero-dependency.** 
+- **Zero-dependency.**
 
 ## Usage
 
-By default, it tries to find Chromium v85+ binary with you can then use for launching puppeteer-core for your needs. 
+By default, it tries to find Chromium v85+ binary with you can then use for launching puppeteer-core for your needs.
 
 Respects `CHROMIUM_EXECUTABLE_PATH` and `PUPPETEER_EXECUTABLE_PATH` environment variables for CI purposes.
 
@@ -51,3 +51,19 @@ let chromeInfo = await findChrome({
 console.log(chromeInfo)
 // { browser: "Chromium 94.0.4606.0", executablePath: "/Users/mbalabash/Projects/opensource/find-chrome-bin/example/chrome/mac-911515/chrome-mac/Chromium.app/Contents/MacOS/Chromium" }
 ```
+
+## Install
+
+```js
+npm i find-chrome-bin
+```
+
+or
+
+```js
+yarn add find-chrome-bin
+```
+
+## License
+
+MIT
