@@ -1,7 +1,7 @@
 {
   "name": "find-chrome-bin",
   "version": "0.1.0",
-  "description": "",
+  "description": "Finds local suitable Chromium binary",
   "keywords": [
     "chrome",
     "chromium",
