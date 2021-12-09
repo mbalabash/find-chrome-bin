@@ -24,3 +24,6 @@ coverage/
 
 example/
 !example/index.js
+
+test/chrome
+!test/chrome/.gitkeep
