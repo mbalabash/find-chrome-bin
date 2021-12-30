@@ -2,7 +2,7 @@
 
 - **Cross-platform.** Works on win, mac and linux.
 
-- **Small.** Only 2.4 kB in your node_modules.
+- **Small.** Only 2.4 kB.
 
 - **Zero-dependency.**
 
