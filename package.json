@@ -20,26 +20,28 @@
   "scripts": {
     "before-publish": "yarn test && clean-publish && npx dual-publish --check && npm pack",
     "publish": "clean-publish && npx dual-publish",
+    "sdc-check": "sdc-check -d .",
     "unit": "tsm node_modules/uvu/bin.js test/",
     "test": "yarn unit && eslint . && check-dts && size-limit"
   },
   "devDependencies": {
     "@logux/eslint-config": "^46.1.1",
-    "@size-limit/preset-small-lib": "^7.0.5",
+    "@size-limit/preset-small-lib": "^7.0.8",
     "check-dts": "^0.6.6",
     "clean-publish": "^4.0.0",
-    "dual-publish": "^3.0.0",
-    "eslint": "^8.7.0",
+    "dual-publish": "^3.0.1",
+    "eslint": "^8.12.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prefer-let": "^3.0.1",
     "eslint-plugin-promise": "^6.0.0",
-    "nanospy": "^0.4.0",
-    "puppeteer-core": "^13.1.1",
-    "size-limit": "^7.0.5",
+    "nanospy": "^0.5.0",
+    "puppeteer-core": "^13.5.2",
+    "sdc-check": "^1.0.0",
+    "size-limit": "^7.0.8",
     "tsm": "^2.2.1",
-    "typescript": "^4.5.5",
+    "typescript": "^4.6.3",
     "uvu": "^0.5.3"
   },
   "eslintConfig": {
@@ -68,8 +70,27 @@
     "singleQuote": true,
     "trailingComma": "none"
   },
+  "sdc-check": {
+    "options": {
+      "daysBeforeUpgradeToNewVersion": 3
+    },
+    "errors": [
+      "package-is-too-new",
+      "lockfile-is-not-safe",
+      "has-os-scripts",
+      "dangerous-shell-commands",
+      "obfuscated-code",
+      "install-scripts"
+    ]
+  },
   "clean-publish": {
-    "cleanDocs": false
+    "cleanDocs": false,
+    "files": [
+      ".sdccheckignore"
+    ],
+    "fields": [
+      "sdc-check"
+    ]
   },
   "repository": {
     "type": "git",
