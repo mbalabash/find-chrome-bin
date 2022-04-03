@@ -19,7 +19,13 @@ function isSuitableVersion(executablePath, min = MIN_CHROME_VERSION, max = MAX_C
     return false
   }
 
-  let match = versionOutput.match(/(Google Chrome|Chromium) ([0-9]{2}).*/)
+  let chromeVersionSince100RegExp = /(Google Chrome|Chromium) ([0-9]{3}).*/
+  let chromeVersionBefore100RegExp = /(Google Chrome|Chromium) ([0-9]{2}).*/
+
+  let match = chromeVersionSince100RegExp.test(versionOutput)
+    ? versionOutput.match(chromeVersionSince100RegExp)
+    : versionOutput.match(chromeVersionBefore100RegExp)
+
   if (match && match[2]) {
     let version = parseInt(match[2], 10)
     return min <= version && version <= max
