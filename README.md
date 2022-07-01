@@ -1,4 +1,4 @@
-# Finds local Chromium binary to use it with puppeteer-core
+# Finds local Chromium to use it with puppeteer-core
 
 - **Cross-platform.** Works on win, mac and linux.
 
