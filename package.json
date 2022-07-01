@@ -22,7 +22,8 @@
     "publish": "clean-publish && npx dual-publish",
     "sdc-check": "sdc-check -d .",
     "unit": "tsm node_modules/uvu/bin.js test/",
-    "test": "yarn unit && eslint . && check-dts && size-limit"
+    "check": "eslint . && check-dts && size-limit",
+    "test": "yarn unit && yarn check"
   },
   "devDependencies": {
     "@logux/eslint-config": "^47.2.0",
@@ -33,6 +34,7 @@
     "eslint": "^8.18.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.2.3",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prefer-let": "^3.0.1",
     "eslint-plugin-promise": "^6.0.0",
