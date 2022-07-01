@@ -4,14 +4,14 @@ export type FindChromeOptions = {
    * @default 85
    * @type {number}
    */
-  min: number
+  min?: number
 
   /**
    * Maximal suitable Chromium version
    * @default undefined
    * @type {number}
    */
-  max: number
+  max?: number
 
   /**
    * Settings for Chromium downloading
@@ -23,7 +23,7 @@ export type FindChromeOptions = {
    *   })}
    * @example
    * const puppeteer = require('puppeteer-core')
-   * const { PUPPETEER_REVISIONS } = require('puppeteer-core/lib/cjs/puppeteer/revisions')
+   * const { PUPPETEER_REVISIONS } = require('puppeteer-core/lib/cjs/puppeteer/revisions.js')
    * download: {
    *   puppeteer,
    *   path: path.join('.', 'chrome'),
@@ -49,7 +49,7 @@ export type FindChromeOptions = {
      * Specific Chromium revision to download
      * @type {string}
      * @example
-     * const { PUPPETEER_REVISIONS } = require('puppeteer-core/lib/cjs/puppeteer/revisions')
+     * const { PUPPETEER_REVISIONS } = require('puppeteer-core/lib/cjs/puppeteer/revisions.js')
      * PUPPETEER_REVISIONS.chromium //=> "938553"
      */
     revision: string
@@ -93,7 +93,7 @@ export type FindChromeOutput = {
  * import { join } from 'path
  * import { findChrome } from 'find-chrome-bin'
  * import puppeteer from 'puppeteer-core'
- * import { PUPPETEER_REVISIONS } from 'puppeteer-core/lib/cjs/puppeteer/revisions'
+ * import { PUPPETEER_REVISIONS } from 'puppeteer-core/lib/cjs/puppeteer/revisions.js'
  * const chromeInfo = await findChrome({
  *     min: 95,
  *     max: 98,

@@ -3,7 +3,7 @@ const { join } = require('path')
 const assert = require('uvu/assert')
 const puppeteer = require('puppeteer-core')
 const { spyOn, restoreAll } = require('nanospy')
-const { PUPPETEER_REVISIONS } = require('puppeteer-core/lib/cjs/puppeteer/revisions')
+const { PUPPETEER_REVISIONS } = require('puppeteer-core/lib/cjs/puppeteer/revisions.js')
 
 const { findChrome } = require('../index.js')
 
