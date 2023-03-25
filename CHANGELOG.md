@@ -6,6 +6,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - Added support for node-14
 
+- Dropped commonjs support
+
 ## 1.0.3
 
 - Added support for new puppeteer BrowserFetcher API
