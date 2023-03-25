@@ -2,6 +2,12 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.0.3
+
+- Added support for new puppeteer BrowserFetcher API
+
+- Upgraded dependencies
+
 ## 1.0.2
 
 - Fixed types.
