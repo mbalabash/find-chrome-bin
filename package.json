@@ -18,8 +18,6 @@
   },
   "types": "./index.d.ts",
   "scripts": {
-    "before-publish": "yarn test && clean-publish && npx dual-publish --check && npm pack",
-    "publish": "clean-publish && npx dual-publish",
     "sdc-check": "sdc-check -d .",
     "unit": "tsm node_modules/uvu/bin.js test/",
     "check": "eslint . && check-dts && size-limit",
@@ -29,8 +27,6 @@
     "@logux/eslint-config": "^49.0.0",
     "@size-limit/preset-small-lib": "^8.2.4",
     "check-dts": "^0.7.1",
-    "clean-publish": "^4.1.1",
-    "dual-publish": "^3.0.1",
     "eslint": "^8.36.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.27.5",
@@ -83,15 +79,6 @@
       "dangerous-shell-commands",
       "obfuscated-code",
       "install-scripts"
-    ]
-  },
-  "clean-publish": {
-    "cleanDocs": false,
-    "files": [
-      ".sdccheckignore"
-    ],
-    "fields": [
-      "sdc-check"
     ]
   },
   "repository": {
