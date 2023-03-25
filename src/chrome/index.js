@@ -42,6 +42,13 @@ function chromeVersion(executablePath) {
   ).trim()
 }
 
+function createBrowserFetcher(puppeteer, path, host) {
+  if (puppeteer.BrowserFetcher) {
+    return new puppeteer.BrowserFetcher({ path, host })
+  }
+  return puppeteer.createBrowserFetcher({ path, host })
+}
+
 async function downloadChromium(puppeteer, path, revision) {
   try {
     let downloadHost =
@@ -49,10 +56,7 @@ async function downloadChromium(puppeteer, path, revision) {
       process.env.npm_config_puppeteer_download_host ||
       process.env.npm_package_config_puppeteer_download_host
 
-    let browserFetcher = puppeteer.createBrowserFetcher({
-      path,
-      host: downloadHost
-    })
+    let browserFetcher = createBrowserFetcher(puppeteer, path, downloadHost)
 
     let revisionInfo = browserFetcher.revisionInfo(revision)
 
