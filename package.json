@@ -1,6 +1,6 @@
 {
   "name": "find-chrome-bin",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Finds local Chromium binary to use it with puppeteer-core",
   "keywords": [
     "chrome",
@@ -14,7 +14,7 @@
   "license": "MIT",
   "author": "mbalabash <maksim.balabash@gmail.com>",
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=14.0.0"
   },
   "types": "./index.d.ts",
   "scripts": {
