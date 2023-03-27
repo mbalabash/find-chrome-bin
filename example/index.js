@@ -9,7 +9,7 @@ const { findChrome } = require('../index')
     max: 128,
     download: {
       puppeteer,
-      path: join('../test', 'chrome'),
+      path: join(__dirname, '..', 'test', 'chrome'),
       revision: PUPPETEER_REVISIONS.chromium
     }
   })
