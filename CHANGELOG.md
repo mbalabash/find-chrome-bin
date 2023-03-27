@@ -2,6 +2,10 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.0.5
+
+- Dropped support for [createBrowserFetcher](https://pptr.dev/api/puppeteer.puppeteernode.createbrowserfetcher#remarks)
+
 ## 1.0.4
 
 - Added support for node-14
