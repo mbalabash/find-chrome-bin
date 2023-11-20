@@ -2,6 +2,11 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.0
+
+- Dropped support for CommonJS
+- Switched to using @puppeteer/browsers to download the browser
+
 ## 1.0.5
 
 - Dropped support for [createBrowserFetcher](https://pptr.dev/api/puppeteer.puppeteernode.createbrowserfetcher#remarks)

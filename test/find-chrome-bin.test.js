@@ -1,11 +1,14 @@
-const { test } = require('uvu')
-const { join } = require('path')
-const assert = require('uvu/assert')
-const puppeteer = require('puppeteer-core')
-const { restoreAll } = require('nanospy')
-const { PUPPETEER_REVISIONS } = require('puppeteer-core/lib/cjs/puppeteer/revisions.js')
+import { test } from 'uvu';
+import * as assert from 'uvu/assert';
+import { join, dirname } from 'node:path'
+import puppeteer from 'puppeteer-core'
+import { restoreAll } from 'nanospy'
+import { PUPPETEER_REVISIONS } from 'puppeteer-core/lib/cjs/puppeteer/revisions.js'
+import { fileURLToPath } from 'url';
 
-const { findChrome } = require('../index.js')
+import { findChrome } from '../index.js'
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 test.after.each(() => restoreAll())
 
@@ -20,7 +23,7 @@ test("should download when could not find chromium and 'puppeteer' options are s
   let downloadedChromeInfo = await findChrome({
     min: 70,
     max: 70,
-    download: { puppeteer, revision: PUPPETEER_REVISIONS.chromium, path: join(__dirname, 'chrome') }
+    download: { puppeteer, revision: PUPPETEER_REVISIONS.chrome, path: join(__dirname, 'chrome') }
   })
 
   assert.is(downloadedChromeInfo.browser.length > 0, true)

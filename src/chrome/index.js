@@ -1,9 +1,14 @@
-const { execSync } = require('child_process')
+import { execSync } from 'child_process'
+import { install } from '@puppeteer/browsers'
 
-const { MIN_CHROME_VERSION, MAX_CHROME_VERSION } = require('../utils')
-const { getWin32ChromeVersionInfo } = require('../win32')
+import { MIN_CHROME_VERSION, MAX_CHROME_VERSION } from '../utils/index.js'
+import { getWin32ChromeVersionInfo } from '../win32/index.js'
 
-function isSuitableVersion(executablePath, min = MIN_CHROME_VERSION, max = MAX_CHROME_VERSION) {
+export function isSuitableVersion(
+  executablePath,
+  min = MIN_CHROME_VERSION,
+  max = MAX_CHROME_VERSION
+) {
   if (min > max) {
     throw new Error(
       "ERROR: Passed options for limiting chrome versions are incorrect. Min couldn't be bigger then Max."
@@ -34,7 +39,7 @@ function isSuitableVersion(executablePath, min = MIN_CHROME_VERSION, max = MAX_C
   return false
 }
 
-function chromeVersion(executablePath) {
+export function chromeVersion(executablePath) {
   return (
     process.platform === 'win32'
       ? getWin32ChromeVersionInfo(executablePath)
@@ -42,28 +47,16 @@ function chromeVersion(executablePath) {
   ).trim()
 }
 
-async function downloadChromium(puppeteer, path, revision) {
+export async function downloadChromium(puppeteer, path, revision) {
   try {
-    let downloadHost =
-      process.env.PUPPETEER_DOWNLOAD_HOST ||
-      process.env.npm_config_puppeteer_download_host ||
-      process.env.npm_package_config_puppeteer_download_host
+    const config = {
+      buildId: revision,
+      browser: 'chrome',
+      unpack: true,
+      cacheDir: path
+    }
 
-    let browserFetcher = new puppeteer.BrowserFetcher({ path, host: downloadHost })
-
-    let revisionInfo = browserFetcher.revisionInfo(revision)
-
-    // If already downloaded
-    if (revisionInfo.local) return revisionInfo
-
-    let newRevisionInfo = await browserFetcher.download(revisionInfo.revision)
-
-    let localRevisions = await browserFetcher.localRevisions()
-    localRevisions = localRevisions.filter(r => r !== revisionInfo.revision)
-
-    // Remove previous revisions
-    let cleanupOldVersions = localRevisions.map(r => browserFetcher.remove(r))
-    await Promise.all(cleanupOldVersions)
+    let newRevisionInfo = await install(config)
 
     return newRevisionInfo
   } catch (error) {
@@ -71,5 +64,3 @@ async function downloadChromium(puppeteer, path, revision) {
     throw error
   }
 }
-
-module.exports = { isSuitableVersion, chromeVersion, downloadChromium }

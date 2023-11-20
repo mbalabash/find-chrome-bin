@@ -1,10 +1,10 @@
-const { join } = require('path')
-const { execSync, execFileSync } = require('child_process')
-const { homedir } = require('os')
+import { join } from 'path'
+import { execSync, execFileSync } from 'child_process'
+import { homedir } from 'os'
 
-const { newLineRegex, canAccess } = require('../utils')
+import { newLineRegex, canAccess } from '../utils/index.js'
 
-function findChromeBinaryOnLinux() {
+export function findChromeBinaryOnLinux() {
   let installations = []
 
   // Look into the directories where .desktop are saved on gnome based distro's
@@ -93,5 +93,3 @@ function sort(installations, priorities) {
 function uniq(arr) {
   return Array.from(new Set(arr))
 }
-
-module.exports = { findChromeBinaryOnLinux }

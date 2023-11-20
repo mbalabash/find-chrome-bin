@@ -1,6 +1,6 @@
 {
   "name": "find-chrome-bin",
-  "version": "1.0.5",
+  "version": "2.0.0",
   "description": "Finds local Chromium binary to use it with puppeteer-core",
   "keywords": [
     "chrome",
@@ -14,30 +14,34 @@
   "license": "MIT",
   "author": "mbalabash <maksim.balabash@gmail.com>",
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=18.0.0"
   },
+  "type": "module",
   "types": "./index.d.ts",
   "scripts": {
     "unit": "tsm node_modules/uvu/bin.js test/",
     "check": "eslint . && check-dts && size-limit",
     "test": "yarn unit && yarn check"
   },
+  "dependencies": {
+    "@puppeteer/browsers": "^1.8.0"
+  },
   "devDependencies": {
-    "@logux/eslint-config": "^49.0.0",
-    "@size-limit/preset-small-lib": "^8.2.4",
-    "check-dts": "^0.7.1",
-    "eslint": "^8.36.0",
-    "eslint-config-standard": "^17.0.0",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-n": "^15.6.1",
+    "@logux/eslint-config": "^52.0.2",
+    "@size-limit/preset-small-lib": "^11.0.0",
+    "check-dts": "^0.7.2",
+    "eslint": "^8.54.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-n": "^16.3.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prefer-let": "^3.0.1",
     "eslint-plugin-promise": "^6.1.1",
-    "nanospy": "^0.5.0",
-    "puppeteer-core": "^19.8.0",
-    "size-limit": "^8.2.4",
+    "nanospy": "^1.0.0",
+    "puppeteer-core": "^21.5.2",
+    "size-limit": "^11.0.0",
     "tsm": "^2.3.0",
-    "typescript": "^5.0.2",
+    "typescript": "^5.3.2",
     "uvu": "^0.5.6"
   },
   "eslintConfig": {

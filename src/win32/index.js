@@ -1,9 +1,9 @@
-const { sep, join } = require('path')
-const { execSync } = require('child_process')
+import { sep, join } from 'path'
+import { execSync } from 'child_process'
 
-const { canAccess } = require('../utils')
+import { canAccess } from '../utils/index.js'
 
-function findChromeBinaryOnWin32(canary) {
+export function findChromeBinaryOnWin32(canary) {
   let suffix = canary
     ? `${sep}Google${sep}Chrome SxS${sep}Application${sep}chrome.exe`
     : `${sep}Google${sep}Chrome${sep}Application${sep}chrome.exe`
@@ -24,7 +24,7 @@ function findChromeBinaryOnWin32(canary) {
   return result
 }
 
-function getWin32ChromeVersionInfo(executablePath) {
+export function getWin32ChromeVersionInfo(executablePath) {
   let executablePathForNode = executablePath.replace(/\\/g, '\\\\')
   let wmiResult = execSync(
     `wmic datafile where name="${executablePathForNode}" GET Manufacturer,FileName,Version /format:csv`,
@@ -63,5 +63,3 @@ function getWin32ChromeVersionInfo(executablePath) {
     throw new Error(`No version information found for '${executablePath}'`)
   }
 }
-
-module.exports = { findChromeBinaryOnWin32, getWin32ChromeVersionInfo }

@@ -1,9 +1,9 @@
-const { isSuitableVersion, chromeVersion, downloadChromium } = require('./src/chrome')
-const { findChromeBinaryOnDarwin } = require('./src/darwin')
-const { findChromeBinaryOnLinux } = require('./src/linux')
-const { findChromeBinaryOnWin32 } = require('./src/win32')
+import { isSuitableVersion, chromeVersion, downloadChromium }  from './src/chrome/index.js'
+import { findChromeBinaryOnDarwin } from './src/darwin/index.js'
+import { findChromeBinaryOnLinux } from './src/linux/index.js'
+import { findChromeBinaryOnWin32 } from './src/win32/index.js'
 
-async function findChrome({ min, max, download: { puppeteer, path, revision } = {} } = {}) {
+export async function findChrome({ min, max, download: { puppeteer, path, revision } = {} } = {}) {
   try {
     let executablePath = findChromeBinaryPath()
     let isSuitable = isSuitableVersion(executablePath, min, max)
@@ -53,5 +53,3 @@ function findChromeBinaryPath() {
 
   return process.env.CHROMIUM_EXECUTABLE_PATH || process.env.PUPPETEER_EXECUTABLE_PATH || getter()
 }
-
-module.exports = { findChrome }
