@@ -1,7 +1,11 @@
 {
   "name": "find-chrome-bin",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Finds local Chromium binary to use it with puppeteer-core",
+  "main": "index.js",
+  "exports": {
+    "import": "./index.js"
+  },
   "keywords": [
     "chrome",
     "chromium",
