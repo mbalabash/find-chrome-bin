@@ -28,7 +28,7 @@
     "test": "yarn unit && yarn check"
   },
   "dependencies": {
-    "@puppeteer/browsers": "^2.1.0"
+    "@puppeteer/browsers": "^2.10.5"
   },
   "devDependencies": {
     "@logux/eslint-config": "^52.0.2",
@@ -42,7 +42,7 @@
     "eslint-plugin-prefer-let": "^3.0.1",
     "eslint-plugin-promise": "^6.1.1",
     "nanospy": "^1.0.0",
-    "puppeteer-core": "^22.2.0",
+    "puppeteer-core": "^22.15.0",
     "size-limit": "^11.0.2",
     "tsm": "^2.3.0",
     "typescript": "^5.3.3",
