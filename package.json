@@ -23,7 +23,7 @@
   "type": "module",
   "types": "./index.d.ts",
   "scripts": {
-    "unit": "tsm node_modules/uvu/bin.js test/",
+    "unit": "tsx node_modules/uvu/bin.js test/",
     "check": "eslint . && check-dts && size-limit",
     "test": "yarn unit && yarn check"
   },
@@ -44,7 +44,7 @@
     "nanospy": "^1.0.0",
     "puppeteer-core": "^22.15.0",
     "size-limit": "^11.0.2",
-    "tsm": "^2.3.0",
+    "tsx": "^4.19.4",
     "typescript": "^5.3.3",
     "uvu": "^0.5.6"
   },
