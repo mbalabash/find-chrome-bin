@@ -1,72 +1,30 @@
 {
   "name": "find-chrome-bin",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Finds local Chromium binary to use it with puppeteer-core",
   "main": "index.js",
+  "type": "module",
+  "types": "./index.d.ts",
   "exports": {
     "import": "./index.js"
   },
-  "keywords": [
-    "chrome",
-    "chromium",
-    "headless",
-    "find-chrome",
-    "puppeteer-core",
-    "browser-fetcher",
-    "puppeteer"
-  ],
-  "license": "MIT",
-  "author": "mbalabash <maksim.balabash@gmail.com>",
   "engines": {
     "node": ">=18.0.0"
   },
-  "type": "module",
-  "types": "./index.d.ts",
   "scripts": {
-    "unit": "tsm node_modules/uvu/bin.js test/",
-    "check": "eslint . && check-dts && size-limit",
-    "test": "yarn unit && yarn check"
+    "test": "check-dts && tsm node_modules/uvu/bin.js test/"
   },
   "dependencies": {
-    "@puppeteer/browsers": "^2.1.0"
+    "@puppeteer/browsers": "2.10.6"
   },
   "devDependencies": {
-    "@logux/eslint-config": "^52.0.2",
-    "@size-limit/preset-small-lib": "^11.0.2",
-    "check-dts": "^0.7.2",
-    "eslint": "^8.57.0",
-    "eslint-config-standard": "^17.1.0",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-n": "^16.6.2",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-prefer-let": "^3.0.1",
-    "eslint-plugin-promise": "^6.1.1",
-    "nanospy": "^1.0.0",
-    "puppeteer-core": "^22.2.0",
-    "size-limit": "^11.0.2",
-    "tsm": "^2.3.0",
-    "typescript": "^5.3.3",
-    "uvu": "^0.5.6"
+    "check-dts": "0.9.0",
+    "nanospy": "1.0.0",
+    "puppeteer-core": "24.15.0",
+    "tsm": "2.3.0",
+    "typescript": "5.8.3",
+    "uvu": "0.5.6"
   },
-  "eslintConfig": {
-    "extends": "@logux/eslint-config"
-  },
-  "eslintIgnore": [
-    "example/index.js"
-  ],
-  "size-limit": [
-    {
-      "import": "{ delay }",
-      "path": "index.js",
-      "limit": "4 kB",
-      "ignore": [
-        "path",
-        "fs",
-        "child_process",
-        "os"
-      ]
-    }
-  ],
   "prettier": {
     "arrowParens": "avoid",
     "quoteProps": "as-needed",
@@ -81,5 +39,16 @@
   "bugs": {
     "url": "https://github.com/mbalabash/find-chrome-bin/issues"
   },
-  "homepage": "https://github.com/mbalabash/find-chrome-bin#readme"
+  "homepage": "https://github.com/mbalabash/find-chrome-bin#readme",
+    "keywords": [
+    "chrome",
+    "chromium",
+    "headless",
+    "find-chrome",
+    "puppeteer-core",
+    "browser-fetcher",
+    "puppeteer"
+  ],
+  "license": "MIT",
+  "author": "mbalabash <maksim.balabash@gmail.com>"
 }
