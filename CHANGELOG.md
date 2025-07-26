@@ -2,6 +2,10 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.3
+
+- Upgraded dependencies
+
 ## 2.0.2
 
 - Upgraded dependencies
