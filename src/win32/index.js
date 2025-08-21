@@ -25,41 +25,19 @@ export function findChromeBinaryOnWin32(canary) {
 }
 
 export function getWin32ChromeVersionInfo(executablePath) {
-  let executablePathForNode = executablePath.replace(/\\/g, '\\\\')
-  let wmiResult = execSync(
-    `wmic datafile where name="${executablePathForNode}" GET Manufacturer,FileName,Version /format:csv`,
-    { stdio: ['pipe', 'pipe', 'ignore'] }
-  )
+  try {
+    // Use PowerShell to get ProductVersion property
+    const informationCommand = `powershell -Command "(Get-Item '${executablePath}').VersionInfo | Select-Object CompanyName,ProductVersion | ConvertTo-Json"`
+    const information = JSON.parse(
+      execSync(informationCommand, { stdio: ['pipe', 'pipe', 'ignore'] })
+    )
+    const manufacturer = information.CompanyName.includes('Chromium') ? 'Chromium' : 'Google Chrome'
+    if (information.ProductVersion) {
+      return `${manufacturer} ${information.ProductVersion}`
+    }
 
-  let wmiResultAsStringArray = wmiResult
-    .toString()
-    .replace(/^\r\r\n/, '')
-    .replace(/\r\r\n$/, '')
-    .split('\r\r\n')
-
-  if (wmiResultAsStringArray.length === 2) {
-    let columnNames = wmiResultAsStringArray[0].split(',')
-    let values = wmiResultAsStringArray[1].split(',')
-    let manufacturer = ''
-    let version = ''
-
-    columnNames.forEach((columnName, index) => {
-      switch (columnName) {
-        case 'Manufacturer':
-          if (values[index].includes('Chromium')) {
-            manufacturer = 'Chromium'
-          } else {
-            manufacturer = 'Google Chrome'
-          }
-          break
-        case 'Version':
-          version = values[index]
-          break
-      }
-    })
-
-    return `${manufacturer} ${version}`
-  } else {
     throw new Error(`No version information found for '${executablePath}'`)
+  } catch (err) {
+    throw new Error(`Failed to get version info for '${executablePath}': ${err.message}`)
   }
 }
