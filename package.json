@@ -1,6 +1,6 @@
 {
   "name": "find-chrome-bin",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Finds local Chromium binary to use it with puppeteer-core",
   "main": "index.js",
   "type": "module",
@@ -12,17 +12,16 @@
     "node": ">=18.0.0"
   },
   "scripts": {
-    "test": "check-dts && tsm node_modules/uvu/bin.js test/"
+    "test": "tsm node_modules/uvu/bin.js test find-chrome-bin.test.js"
   },
   "dependencies": {
-    "@puppeteer/browsers": "2.10.6"
+    "@puppeteer/browsers": "2.10.10"
   },
   "devDependencies": {
-    "check-dts": "0.9.0",
     "nanospy": "1.0.0",
-    "puppeteer-core": "24.15.0",
+    "puppeteer-core": "24.22.0",
     "tsm": "2.3.0",
-    "typescript": "5.8.3",
+    "typescript": "5.9.2",
     "uvu": "0.5.6"
   },
   "prettier": {
@@ -40,7 +39,7 @@
     "url": "https://github.com/mbalabash/find-chrome-bin/issues"
   },
   "homepage": "https://github.com/mbalabash/find-chrome-bin#readme",
-    "keywords": [
+  "keywords": [
     "chrome",
     "chromium",
     "headless",

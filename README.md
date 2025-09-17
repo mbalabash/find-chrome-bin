@@ -4,8 +4,6 @@
 
 - **Small.** Only 2.4 kB.
 
-- **Zero-dependency.**
-
 ## Usage
 
 By default, it tries to find Chromium v85+ binary with you can then use for launching puppeteer-core for your needs.

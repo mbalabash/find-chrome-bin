@@ -2,6 +2,11 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.4
+
+- Replaced `wmic` with powershell command to get Chrome version on Windows (thanks to [juanscr](https://github.com/juanscr))
+- Upgraded dependencies
+
 ## 2.0.3
 
 - Upgraded dependencies
